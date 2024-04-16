@@ -130,7 +130,7 @@ XGBase(
 
 gg.alert("\n☣️  Logo 𝐁𝐲𝐩𝐚𝐬𝐬 𝐀𝐜𝐭𝐢𝐯𝐚𝐭𝐞𝐝 \n")
 
-gg.alert("Credits : @SirAmun")
+gg.toast("Credits : @SirAmun")
 
 gg.alert("⚡Done ⚡")
 end
@@ -186,7 +186,7 @@ function S_Pointer(t_So, t_Offset, _bit)
 end
 
 local offsets = {
-  0x5CE8, 0xB0E8, 0xB110, 0xB288, 0xAC68, 0xAC40, 0xE4F8, 0x8B80, 0x8388, 0xBBF8, 0xB9B0
+  0x5CE8, 0xB0E8, 0xB110, 0xB288, 0xAC68, 0xAC40, 0xE4F8, 0x8B80, 0x8388, 0xBBF8, 0xB9B0,0xDB9B0,0xDB9EC, 0x121B5C, 0x15946C, 0x166B1C, 0x1DB5C0,0x1E5774,0x3B51DC, 0x3B5F08
 }
 
 local t = {"libanogs.so:bss", "Cb"}
@@ -196,7 +196,7 @@ for _, offset in ipairs(offsets) do
 end
 
 gg.alert("Bypass Lobby Activated ✓")
-gg.alert("Credits : @SirAmun")
+gg.toast("Credits : @SirAmun")
 gg.alert("\n☣️  Done \n")
 end
 
