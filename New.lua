@@ -130,7 +130,7 @@ XGBase(
 
 gg.alert("\n☣️  Logo 𝐁𝐲𝐩𝐚𝐬𝐬 𝐀𝐜𝐭𝐢𝐯𝐚𝐭𝐞𝐝 \n")
 
-gg.toast("Credits : @SirAmun")
+gg.alert("Credits : @SirAmun")
 
 gg.alert("⚡Done ⚡")
 end
@@ -196,7 +196,7 @@ for _, offset in ipairs(offsets) do
 end
 
 gg.alert("Bypass Lobby Activated ✓")
-gg.toast("Credits : @SirAmun")
+gg.alert("Credits : @SirAmun")
 gg.alert("\n☣️  Done \n")
 end
 
