@@ -136,17 +136,64 @@ gg.alert("⚡Done ⚡")
 end
 
 function B2()
-local t = {"libUE4.so:bss", "Cb"}
-local tt = {0x135514}
-local ttt = S_Pointer(t, tt, true)
-gg.addListItems({{address = ttt, flags = 32, value = 4758429448663908272, freeze = true}})
+function S_Pointer(t_So, t_Offset, _bit)
+    local function getRanges()
+        local ranges = {}
+        local t = gg.getRangesList('^/data/*.so*$')
+        for i, v in pairs(t) do
+            if v.type:sub(2, 2) == 'w' then
+                table.insert(ranges, v)
+            end
+        end
+        return ranges
+    end
 
-local t = {"libUE4.so:bss", "Cb"}
-local tt = {0x135510}
-local ttt = S_Pointer(t, tt, true)
-gg.addListItems({{address = ttt, flags = 32, value = 4758429448663908272, freeze = true}})
+    local function Get_Address(N_So, Offset, ti_bit)
+        local ti = gg.getTargetInfo()
+        local S_list = getRanges()
+        local _Q = tonumber(0x167ba0fe)
+        local _t = ti_bit and 32 or 4
+        local t = {}
 
+        for i, v in ipairs(S_list) do
+            local _N = v.internalName:gsub('^.*/', '')
+            if N_So[1] == _N and N_So[2] == v.state then
+                local _S = v
+                t[#t + 1] = {}
+                t[#t].address = _S.start + Offset[1]
+                t[#t].flags = _t
 
+                if #Offset > 1 then
+                    for j = 2, #Offset do
+                        local S = gg.getValues(t)
+                        t = {}
+                        for _, val in ipairs(S) do
+                            val.value = not ti.x64 and val.value & 0xFFFFFFFF or val.value
+                            t[#t + 1] = {
+                                address = val.value + Offset[j],
+                                flags = _t
+                            }
+                        end
+                    end
+                end
+
+                return t[#t].address
+            end
+        end
+    end
+
+    return string.format('0x%X', Get_Address(t_So, t_Offset, _bit))
+end
+
+local offsets = {
+  0x5CE8, 0xB0E8, 0xB110, 0xB288, 0xAC68, 0xAC40, 0xE4F8, 0x8B80, 0x8388, 0xBBF8, 0xB9B0
+}
+
+local t = {"libanogs.so:bss", "Cb"}
+for _, offset in ipairs(offsets) do
+    local ttt = S_Pointer(t, {offset}, true)
+    gg.addListItems({{address = ttt, flags = 4, value = 117, freeze = true}})
+end
 
 gg.alert("Bypass Lobby Activated ✓")
 gg.toast("Credits : @SirAmun")
